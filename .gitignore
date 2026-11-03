@@ -1,0 +1,44 @@
+# --- Terraform (based on github/gitignore Terraform.gitignore) ---
+
+# Provider plugins and modules downloaded by terraform init
+.terraform/
+
+# State files can contain secrets and resource IDs. State lives in a remote backend.
+*.tfstate
+*.tfstate.*
+.terraform.tfstate.lock.info
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Variable files often hold secrets or environment-specific values.
+# Commit a sanitized example (like example.tfvars.example) instead.
+*.tfvars
+*.tfvars.json
+
+# Local-only overrides
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Saved plan files (terraform plan -out=...) can contain sensitive values
+*.tfplan
+tfplan
+
+# CLI config files can hold API tokens
+.terraformrc
+terraform.rc
+
+# Note: .terraform.lock.hcl is NOT ignored. It pins provider versions and should be committed.
+
+# --- Secrets and local environment ---
+.env
+.env.*
+
+# --- Editor and OS files ---
+.DS_Store
+Thumbs.db
+.vscode/
+.claude/settings.local.json
