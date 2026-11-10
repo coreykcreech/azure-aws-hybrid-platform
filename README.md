@@ -22,7 +22,7 @@ Acquisitions are one of the most common reasons companies end up multi-cloud. My
 | # | Project | What it covers | Status |
 |---|---|---|---|
 | 1 | Identity and governance | Entra ID Conditional Access, PIM and custom RBAC, management groups and Azure Policy, Entra as the sign-in for AWS through SAML federation, AWS IAM guardrails | In progress |
-| 2 | Secure delivery pipeline | GitHub Actions with OIDC (no stored cloud keys), Terraform plan and apply with approvals, IaC scanning, policy as code, drift detection, scheduled teardown of expired resources | Planned |
+| 2 | Secure delivery pipeline | GitHub Actions with OIDC (no stored cloud keys), Terraform plan and apply with approvals, layered secret protection (push protection, Gitleaks on every pull request, secret scanning alerts), IaC scanning with Checkov, Dependabot and actions pinned to commit SHAs, policy as code, drift detection, scheduled teardown of expired resources. The first workload through it is a shipment-tracking Azure Function that writes to Blob Storage with a managed identity, so there are no keys to leak | Planned |
 | 3 | Hybrid network | AWS Transit Gateway and Azure hub-and-spoke, site-to-site IPsec VPN with BGP from the on-prem side to both clouds, on a dynamic home IP | Planned |
 | 4 | Detection and response | Microsoft Sentinel as one SIEM for both clouds, custom KQL rules and automated playbooks, plus GuardDuty, EventBridge and Lambda for containment on the AWS side | Planned |
 | 5 | Kubernetes and supply chain | Hardened k3s with GitOps, only signed images allowed to run, runtime alerts into the SIEM, and a short AKS comparison | Planned |
@@ -38,9 +38,18 @@ Each project folder includes:
 
 ## How it's built
 
-- Everything is Terraform. No manual portal changes, so teardown is one `terraform destroy` with nothing left behind.
+- Everything ends up in Terraform. When I build something in the portal first to learn how it works, I import it into code afterward and let Terraform own it from then on. Teardown is one `terraform destroy` with nothing left behind.
+- Each project ships a small working version first, then grows. Something finished beats something half built.
 - Costs stay low on purpose. Anything billed by the hour gets built in a timed session, documented, and destroyed.
 - Write-ups cover what went wrong, not just what worked.
+
+## Credits
+
+Some of the smaller pieces in projects 2 and 6 started as project ideas from W. J. Pearce, a cloud security engineer who shares hands-on projects on YouTube: secret scanning with Gitleaks and GitHub's built-in tools, Dependabot, a keyless serverless workload, and an early posture check with a cloud security posture management tool. His versions are mostly AWS-based. I adapted them to fit the scenario and the Microsoft side of the stack.
+
+- [6 Cloud Security Projects Help To Get You Hired 2026](https://www.youtube.com/watch?v=tEIMZdEdLsc)
+- [BEST Beginner DevSecOps & Cloud Security Project](https://www.youtube.com/watch?v=6HNetAnewCA)
+- [AWS Cloud Projects: Insights from a Cloud Security Engineer](https://www.youtube.com/watch?v=JMUeoVu5RRg) (interview on Caleb Oni's channel)
 
 ## Using AI
 
