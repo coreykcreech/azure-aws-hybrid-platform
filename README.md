@@ -57,7 +57,7 @@ I use Claude Code throughout these projects as a mentor. I do the work, and use 
 
 ## Earlier work
 
-This repo replaces my first portfolio repo, [cloud-security-portfolio](https://github.com/coreykcreech/cloud-security-portfolio), which is archived. The Azure network build from there gets rebuilt here as part of project 3.
+This repo replaces my first portfolio repo, [cloud-security-portfolio](https://github.com/coreykcreech/cloud-security-portfolio), which is archived. Its [Azure network foundation](https://github.com/coreykcreech/cloud-security-portfolio/tree/master/azure-01-network-terraform) (a segmented VNet, least-privilege NSGs, VNet flow logs and Bastion, all in Terraform) is the starting point for project 3, where it gets rebuilt as a spoke in a hub-and-spoke design.
 
 ## Certifications and education
 
